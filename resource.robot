@@ -7,6 +7,7 @@ Library         SeleniumLibrary
 ${url}                    https://rahulshettyacademy.com/loginpagePractise/
 ${username}               rahulshettyacademy
 ${invalid_password}       password123
+${valid_password}         learning
 ${signInBtn}              xpath://input[contains(@id,'signInBtn')]
 ${error_message_login}    css:.alert-danger
 
@@ -17,8 +18,9 @@ Open the browser with Mortgage payment url
     Go To               ${url}
 
 Fill the login Form
+    [arguments]       ${username}   ${password}
     Input Text        id:username   ${username}
-    Input Password    id:password   ${invalid_password}
+    Input Password    id:password   ${password}
     Click Button      ${signInBtn}
 
 Wait until it checks and display error message

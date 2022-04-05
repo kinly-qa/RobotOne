@@ -1,6 +1,5 @@
 *** Settings   ***
 Documentation   To validate the Login form.
-Library         SeleniumLibrary
 Resource        resource.robot
 Test Setup      Open the browser with Mortgage payment url
 Test Teardown   Close Browser

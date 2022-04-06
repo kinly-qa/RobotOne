@@ -33,7 +33,7 @@ Test Teardown   Close Browser
 ```
 
 ### Robot Variables
-```
+```robot
 *** Variables  ***
 ${url}                    https://rahulshettyacademy.com/loginpagePractise/
 ${error_message_login}    css:.alert-danger
@@ -42,7 +42,7 @@ ${error_message_login}    css:.alert-danger
 
 
 ### Robot Test Cases
-```
+```robotframework
 *** Test Cases ***
 Validate Unsuccessful Login
     Fill the login Form

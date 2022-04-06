@@ -15,6 +15,7 @@ ${signInBtn}              xpath://input[contains(@id,'signInBtn')]
 ${error_message_login}    css:.alert-danger
 ${checkout_button}        css:.nav-link
 ${card_title_list}        css:.card-title
+${card_add_button}        xpath:(//*[@class='card-footer'])[4]/button
 
 *** Keywords   ***
 Open the browser with Mortgage payment url
@@ -38,7 +39,27 @@ Verify Card titles in the Shop page
     @{expected_list} =    Create List   iphone X    Samsung Note 8    Nokia Edge    Blackberry
     ${elements} =         Get WebElements   ${card_title_list}
     @{actual_list} =      Create List
-    FOR   ${element}  IN  @{elements}
-        Append To List  @{actual_list}    @{element.text}
-        Log   ${element.text}
+
+    FOR   ${element}  IN    @{elements}
+        Log                 ${element.text}
+        Append To List      ${actual_list}    ${element.text}
     END
+
+    Lists Should Be Equal   ${expected_list}    ${actual_list}
+
+Select the Card
+    [arguments]   ${card_name}
+    ${elements} =         Get WebElements   ${card_title_list}
+    ${index} =            Set Variable      1
+
+    FOR   ${element}  IN    @{elements}
+        Exit For Loop If    '${card_name}' == '${element.text}'
+        ${index} =    Evaluate   ${index} + 1
+    END
+
+    Click Button  xpath:(//*[@class='card-footer'])[${index}]/button
+
+Wait and Click
+    [arguments]   ${element}
+    Wait Until Element Is Visible   ${element}
+    Click Element     ${element}

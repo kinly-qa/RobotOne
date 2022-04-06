@@ -1,6 +1,7 @@
 *** Settings   ***
 Documentation   A resource file with resuable keywords and variables
 Library         SeleniumLibrary
+Library         Collections
 
 
 *** Variables  ***
@@ -8,9 +9,12 @@ ${url}                    https://rahulshettyacademy.com/loginpagePractise/
 ${username}               rahulshettyacademy
 ${invalid_password}       password123
 ${valid_password}         learning
+
+# Locators
 ${signInBtn}              xpath://input[contains(@id,'signInBtn')]
 ${error_message_login}    css:.alert-danger
-
+${checkout_button}        css:.nav-link
+${card_title_list}        css:.card-title
 
 *** Keywords   ***
 Open the browser with Mortgage payment url
@@ -23,8 +27,18 @@ Fill the login Form
     Input Password    id:password   ${password}
     Click Button      ${signInBtn}
 
-Wait until it checks and display error message
-    Wait Until Element Is Visible   ${error_message_login}
-
 Verify error message is correct
     Element Text Should Be    ${error_message_login}    Incorrect username/password.
+
+Wait Until Element Is located in page
+    [arguments]   ${element}
+    Wait Until Element Is Visible   ${element}
+
+Verify Card titles in the Shop page
+    @{expected_list} =    Create List   iphone X    Samsung Note 8    Nokia Edge    Blackberry
+    ${elements} =         Get WebElements   ${card_title_list}
+    @{actual_list} =      Create List
+    FOR   ${element}  IN  @{elements}
+        Append To List  @{actual_list}    @{element.text}
+        Log   ${element.text}
+    END

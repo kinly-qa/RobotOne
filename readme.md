@@ -22,7 +22,7 @@ pip3 list
 ```
 
 ### Robot Settings, Resource, Library
-```
+```robot
 *** Settings   ***
 Documentation   To validate the Login form.
 Library         SeleniumLibrary
@@ -42,7 +42,7 @@ ${error_message_login}    css:.alert-danger
 
 
 ### Robot Test Cases
-```robotframework
+```robot
 *** Test Cases ***
 Validate Unsuccessful Login
     Fill the login Form
@@ -53,7 +53,7 @@ Validate Unsuccessful Login
 ```
 
 ### Robot Keywords
-```
+```robot
 
 *** Keywords   ***
 Open the browser with url

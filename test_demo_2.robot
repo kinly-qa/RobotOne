@@ -28,6 +28,7 @@ Fill the login Details and login Form
     Click Element     css:input[value='user']
     Wait Until Element is Visible   css:.modal-body
     Wait and Click    id:okayBtn
+    Wait Until Element is Not Visible   css:.modal-body
     Select From List By value       css:select.form-control     teach
     Select Checkbox   id:terms
     Checkbox Should Be Selected     id:terms

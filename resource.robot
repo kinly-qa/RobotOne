@@ -2,6 +2,7 @@
 Documentation   A resource file with resuable keywords and variables
 Library         SeleniumLibrary
 Library         Collections
+Library         String
 
 
 *** Variables  ***
@@ -63,3 +64,5 @@ Wait and Click
     [arguments]   ${element}
     Wait Until Element Is Visible   ${element}
     Click Element     ${element}
+    Click Button      ${element}
+    Click Button      ${element}

@@ -72,3 +72,7 @@ Verify error message is correct
     Element Text Should Be    ${error_message_login}    Incorrect username/password.
 
 ```
+### Running Robot
+```shell
+robot -d ./reports test_demo_0.robot 
+```
